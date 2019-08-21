@@ -14,6 +14,12 @@ class AdminController extends Controller
 		return view('home.admin.show_users', ['user'=>$data]);
 	}
 	
+	public function show_orders(){
+		$data = DB::table('orders')->get();
+		//echo $data;
+		return view('home.admin.show_order', ['order'=>$data]);
+	}
+	
      public function profile($id){
   		$result = DB::table('users')->where('id', $id)->first();
 		//echo $result;

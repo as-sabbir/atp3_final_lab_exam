@@ -40,6 +40,7 @@ Route::group(['middleware'=>['sess']],function(){
 		Route::get('/admin/profile/edit/{sid}', 'AdminController@edit');
 		Route::post('/admin/profile/edit/{sid}', 'AdminController@update');
 		
+		Route::get('/admin/order', 'AdminController@show_orders')->name('admin.show_orders');
 		Route::get('/admin/users', 'AdminController@show_users')->name('admin.show_users');
 		Route::get('/admin/users/search', 'AdminController@search')->name('admin.search');
 		Route::get('/admin/users/delete/{sid}', 'AdminController@delete_user');
