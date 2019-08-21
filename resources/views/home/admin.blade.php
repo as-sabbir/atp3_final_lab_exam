@@ -84,7 +84,7 @@
                         <a href="/admin/users"><i class="fa fa-fw fa-desktop"></i> Users</a>
                     </li>
                     <li>
-                        <a href="/admin/add_representative"><i class="fa fa-fw fa-wrench"></i> Add Representative</a>
+                        <a href="/admin/add_book"><i class="fa fa-fw fa-wrench"></i> Add Book</a>
                     </li>
                 
                 </ul>

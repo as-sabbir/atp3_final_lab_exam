@@ -82,30 +82,27 @@ class AdminController extends Controller
 		return redirect()->route('admin.show_users');
 	}
 	
-	public function add_representative_view(Request $req){
-		return view('home.admin.add_representative');
+	public function add_book_view(Request $req){
+		return view('home.admin.add_book');
 	}
 	
-	public function add_representative(Request $req){
+	public function add_book(Request $req){
 		
 		$req->validate([
 
-            "firstName"  => "required",
-            "lastName"  => "required",
-            "phone"  => "required",
-            "email"  => "required | unique:users,email",
-            "userName"  => "required | unique:users,userName",
-            "password"  => "required | min:4",
-            "gender"  => "required",
-            "dateOfBirth"  => "required",
-            "user_role"  => "required",
+            "book_title"  => "required",
+            "book_name"  => "required",
+            "book_author"  => "required",
+            "price"  => "required",
+            "quantity"  => "required",
+            "description"  => "required",
 
         ]);
 		
-		DB::table('users')->insert(
-    ['firstName' => $req->firstName,'lastName' => $req->lastName,'phone' => $req->phone, 'email' => $req->email,'userName' => $req->userName, 'password' => $req->password,'gender' => $req->gender,'dateOfBirth' => $req->dateOfBirth,'user_role' => $req->user_role]
+		DB::table('books')->insert(
+    ['book_title' => $req->book_title,'book_name' => $req->book_name,'book_aythor' => $req->book_author,'book_price' => $req->price, 'book_quantity' => $req->quantity,'book_description' => $req->description]
     );
-        return redirect()->route('admin.show_users');
+        echo "success";
 	}
 	
 	public function show_contact(Request $req){

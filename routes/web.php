@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home.index');
+Route::get('/home/search', 'HomeController@search')->name('home.search');
 
 Route::get('/contact', 'HomeController@show_contact')->name('home.show_contact');
 Route::post('/contact', 'HomeController@add_contact')->name('home.add_contact');
@@ -38,8 +39,8 @@ Route::group(['middleware'=>['sess']],function(){
 		Route::get('/admin/users', 'AdminController@show_users')->name('admin.show_users');
 		Route::get('/admin/users/search', 'AdminController@search')->name('admin.search');
 		Route::get('/admin/users/delete/{sid}', 'AdminController@delete_user');
-		Route::get('/admin/add_representative', 'AdminController@add_representative_view')->name('admin.add_representative_view');
-		Route::post('/admin/add_representative', 'AdminController@add_representative')->name('admin.add_representative');
+		Route::get('/admin/add_book', 'AdminController@add_book_view')->name('admin.add_book_view');
+		Route::post('/admin/add_book', 'AdminController@add_book')->name('admin.add_book');
 		Route::get('/admin/contact', 'AdminController@show_contact')->name('admin.show_contact');
 		Route::post('/admin/contact', 'AdminController@add_contact')->name('admin.add_contact');
 		Route::get('/admin/inbox', 'AdminController@inbox')->name('admin.inbox');

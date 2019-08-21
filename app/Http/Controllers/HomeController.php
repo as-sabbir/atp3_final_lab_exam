@@ -8,16 +8,48 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
 	public function index(Request $req){
-		
-		$result = DB::table('slider')->orderBy('id', 'DESC')->take(3)->get();;
+		$category = DB::table('categories')->orderBy('cat_id', 'DESC')->take(3)->get();;
+		$result = DB::table('books')->get();
 		//echo $result;
 		//print_r($result);
-		return view('index', ['user'=>$result]);
+		return view('index', ['user'=>$result,'cat'=>$category]);
 	}
 	
 	public function admin(Request $req){
 		return view('home.admin');
 	}
+	
+	    public function search(Request $req){
+		if($req->search){
+		$data = DB::table('books')
+		//IF ANY OF THE COLOUMN MATCH FIND BELOW FOREACH LOOP.........
+		->where('book_id','like','%'.$req->search . '%')
+		->orwhere('book_title','like','%'.$req->search . '%')
+		->orwhere('book_name','like','%'.$req->search . '%')
+		->orwhere('book_author','like','%'.$req->search . '%')
+		->orwhere('book_price','like','%'.$req->search . '%')
+		->get();
+		//echo $data;
+		
+		if($data){
+			foreach($data as $value => $search){
+				echo '<tr> <td>' . $search->book_id . '</td>
+				           <td>' . $search->book_title . '</td>
+				           <td>' . $search->book_name . '</td>
+				           <td>' . $search->book_author . '</td>
+				           <td>' . $search->book_price . '</td>
+				           <td>' . $search->book_quantity . '</td>
+				           <td>' . $search->book_description . '</td>
+				      </tr>';
+			}
+		}
+		}
+	}
+ 
+	
+	
+	
+	
 	
    	public function representative(Request $req){
 		return view('home.representative');

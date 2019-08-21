@@ -3,16 +3,30 @@
 
   
 @php
-    $image1 = $user[0]->image;
-    $image2 = $user[1]->image;
-    $image3 = $user[2]->image;
+
+    $title1 = $cat[0]->cat_title;
+    $title2 = $cat[1]->cat_title;
+    $title3 = $cat[2]->cat_title;
 @endphp
         <div class="row">
 
             <div class="col-md-3">
-                <p class="lead">About Us</p>
+                <p class="lead">Categories</p>
                 <div class="list-group">
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+             <div>
+			 <table  width="200" border=1>
+				<tr>
+					
+				</tr>
+				
+					<tr><td align="center"><a href="#">{{$title1}}</a></td></tr>
+					<tr><td align="center"><a href="#">{{$title2}}</a></td></tr>
+					<tr><td align="center"><a href="#">{{$title3}}</a></td></tr>
+				
+				</tr>
+			 </table>
+			 
+			 </div>
                 </div>
             </div>
 
@@ -21,30 +35,74 @@
                 <div class="row carousel-holder">
 
                     <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img style="width:900px;height:300px; class="slide-image" src="{{asset('image/').'/'.$image1}}" alt="Responsive image">
-                                </div>
-                                <div class="item">
-                                    <img style="width:900px;height:300px; class="slide-image" src="{{asset('image/').'/'.$image2}}" alt="Responsive image">
-                                </div>
-                                <div class="item">
-                                    <img style="width:900px;height:300px; class="slide-image" src="{{asset('image/').'/'.$image3}}" alt="Responsive image">
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
+                   <form method="post">
+{{csrf_field()}}
+</br>
+<div class="form-group">
+
+
+
+
+
+
+
+<input type="search" class="form-control" id="search" placeholder="Search*" onkeyup="info1()"/>
+
+</div>
+	<table width="800" border="1">
+		<tr>
+		<th>ID</th>
+		<th>Title</th>
+		<th>Name</th>
+		<th>Author</th>
+		<th>Price</th>
+		<th>quantity</th>
+		<th>description</th>
+		</tr>
+
+<tbody id="success">
+				@foreach($user as $value)
+				<tr>
+					<td>{{$value->book_id}}</td>
+					<td>{{$value->book_title}}</td>
+					<td>{{$value->book_name}}</td>
+					<td>{{$value->book_author}}</td>
+					<td>{{$value->book_price}}</td>
+					<td>{{$value->book_quantity}}</td>
+					<td>{{$value->book_description}}</td>
+
+					<td>
+						<a href="/admin/users/delete/{{$value->book_id}}">Delete</a> 
+					</td>
+				</tr>
+				@endforeach
+</tbody>
+	</table>
+</form>
+<script type="text/javascript" charset="utf-8">
+function info1()
+{ 
+	var search = $('#search').val();
+	console.log(search);
+		$.ajax({
+			type:"get",
+	        url:'{{URL::to("home/search")}}',
+				{{--url:'{{route('admin.search')}}',--}}
+			data:{
+				search:search,
+				_token:$('#signup-token').val()
+				},
+			datatype:'html',
+			
+			success:function(response){
+				console.log(response);
+				$("#success").html(response);
+			}
+		});
+
+
+}
+</script>
                     </div>
 
                 </div>
