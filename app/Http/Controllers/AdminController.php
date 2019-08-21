@@ -106,7 +106,7 @@ class AdminController extends Controller
         ]);
 		
 		DB::table('books')->insert(
-    ['book_title' => $req->book_title,'book_name' => $req->book_name,'book_aythor' => $req->book_author,'book_price' => $req->price, 'book_quantity' => $req->quantity,'book_description' => $req->description]
+    ['book_title' => $req->book_title,'book_name' => $req->book_name,'book_author' => $req->book_author,'book_price' => $req->price, 'book_quantity' => $req->quantity,'book_description' => $req->description]
     );
         echo "success";
 	}
