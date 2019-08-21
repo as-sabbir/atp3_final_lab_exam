@@ -64,6 +64,12 @@ class HomeController extends Controller
 		return view('contact');
 	}
 	
+	public function checkout(Request $req, $id){
+		$result = DB::table('books')->where('book_id', $id)->first();
+		return view('checkout', ['book'=>$result]);
+
+	}
+	
 	public function about(Request $req){
 		return view('about');
 	}

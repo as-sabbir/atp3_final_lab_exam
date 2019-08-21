@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home.index');
 Route::get('/home/search', 'HomeController@search')->name('home.search');
+Route::get('/home/buy/{sid}', 'HomeController@checkout')->name('home.checkout');
 
 Route::get('/contact', 'HomeController@show_contact')->name('home.show_contact');
 Route::post('/contact', 'HomeController@add_contact')->name('home.add_contact');

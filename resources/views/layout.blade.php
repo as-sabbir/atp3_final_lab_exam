@@ -12,7 +12,7 @@
     <title>Smart Mess</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
@@ -73,6 +73,9 @@
 @yield('login')
 @yield('about')
 @yield('register_view')
+@yield('checkout')
+
+
 
     </div>
     <!-- /.container -->

@@ -72,7 +72,7 @@
 					<td>{{$value->book_description}}</td>
 
 					<td>
-						<a href="/admin/users/delete/{{$value->book_id}}">Delete</a> 
+						<a href="/home/buy/{{$value->book_id}}">BUY</a> 
 					</td>
 				</tr>
 				@endforeach
