@@ -74,6 +74,8 @@
 @yield('about')
 @yield('register_view')
 @yield('checkout')
+@yield('payment')
+@yield('thank_you')
 
 
 

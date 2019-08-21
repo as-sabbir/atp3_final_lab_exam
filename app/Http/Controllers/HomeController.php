@@ -18,6 +18,9 @@ class HomeController extends Controller
 	public function admin(Request $req){
 		return view('home.admin');
 	}
+
+	
+	
 	
 	    public function search(Request $req){
 		if($req->search){
@@ -64,11 +67,34 @@ class HomeController extends Controller
 		return view('contact');
 	}
 	
+		
+	
+	public function thank_you(Request $req){
+			DB::table('orders')->insert(
+			['book_title' => session('book_title'),'book_name' => session('book_name'),'book_author' => session('book_author'), 'price' => session('book_price')]
+			);
+		$req->session()->flush();
+		return view('thank_you');
+	}
+	
+	
+	
 	public function checkout(Request $req, $id){
 		$result = DB::table('books')->where('book_id', $id)->first();
+		$req->session()->put('book_title', $result->book_title);
+		$req->session()->put('book_name', $result->book_name);
+		$req->session()->put('book_author', $result->book_author);
+		$req->session()->put('book_price', $result->book_price);
+		//echo session('book_name');
 		return view('checkout', ['book'=>$result]);
 
 	}
+	
+	public function payment(Request $req){
+		return view('payment');
+	}
+	
+	
 	
 	public function about(Request $req){
 		return view('about');

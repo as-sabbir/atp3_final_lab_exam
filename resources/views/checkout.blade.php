@@ -62,7 +62,7 @@
 
 <!--Buy button***********************************-->
 <div style="margin-top:50px;">
-    <a href="payment.php"><input type="submit" name="upload" value="Buy Now"></a>
+    <a href="/home/payment"><input type="submit" name="upload" value="Buy Now"></a>
 </div>	
 
 </div>
