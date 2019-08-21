@@ -3,7 +3,7 @@
 @section('show_users')
 <div class="container center_div">
 
-	<table border="1">
+	<table width="700" border="1">
 		<tr>
 		<th>Id</th>
 		<th>book_title</th>
